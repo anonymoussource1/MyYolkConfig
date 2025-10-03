@@ -1,0 +1,14 @@
+source $VIMRUNTIME/defaults.vim
+
+set number
+set tabstop=4
+set shiftwidth=4
+set hlsearch
+set noexpandtab
+set cursorline
+set nowrap
+set wildmenu
+
+map j gj
+map k gk
+map $ g$
