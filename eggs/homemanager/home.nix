@@ -1,10 +1,6 @@
 { config, pkgs, lib, ... }:
 
 {
-	imports = [
-		~/.config/sway/config.nix
-	];
-
 	# Home Manager needs a bit of information about you and the paths it should
 	# manage.
 	home.username = "danielkurz";
@@ -21,6 +17,7 @@
 	
 	# The home.packages option allows you to install Nix packages into your
 	# environment.
+	nixpkgs.config.allowUnfree = true;
 	home.packages = with pkgs; [
 		# # Adds the 'hello' command to your environment. It prints a friendly
 		# # "Hello, world!" when run.
@@ -46,7 +43,9 @@
 		gimp3
 		dex
 		cowsay
+		spotify
 		kdePackages.okular
+		sway
 		(flameshot.override { enableWlrSupport = true; })
 		(eww.overrideAttrs (oldAttrs: rec {
 			patches = [
@@ -67,6 +66,21 @@
 			doCheck = false;
 		})	
 	];
+
+	services.swayidle = let 
+		lock = "${pkgs.swaylock}/bin/swaylock -feF -i ~/Backgrounds/bg.jpg --font BigBlueTermPlusNerdFont";
+		display = status: "${pkgs.sway}/bin/swaymsg 'output * power ${status}'";
+	in {
+		enable = true;
+		timeouts = [
+			{ timeout = 60; command = lock; }
+			{ timeout = 120; command = display "off"; resumeCommand = display "on"; }
+			{ timeout = 135; command = "systemctl suspend"; }
+		];
+		events = [
+			{ event = "before-sleep"; command = lock; }
+		];
+	};
 
 	programs.bash = {
 		enable = true;

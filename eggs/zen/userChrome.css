@@ -1,5 +1,5 @@
-#zen-browser-background {
-  background-color: #4A4A45 !important;
+#main-window {
+  --zen-main-browser-background: #2B2B27 !important;
 }
 
 #zen-sidebar-top-buttons-customization-target, #zen-sidebar-foot-buttons {

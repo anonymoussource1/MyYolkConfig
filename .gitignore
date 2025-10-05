@@ -2,3 +2,4 @@
 /.deployed_cache
 /.yolk_git
 /eggs/vim/.netrwhist
+/eggs/nixos/hostname
