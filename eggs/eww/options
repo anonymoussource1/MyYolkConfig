@@ -1,5 +1,10 @@
 [
   {
+    "name": "Flameshot",
+    "path": "/home/danielkurz/.nix-profile/share/applications/org.flameshot.Flameshot.desktop",
+    "exec": "/nix/store/836vknp0ywpqmm0d85iq9y26gzkr3dg8-flameshot-12.1.0-unstable-2025-05-04/bin/flameshot"
+  },
+  {
     "name": "Foot",
     "path": "/run/current-system/sw/share/applications/foot.desktop",
     "exec": "foot"
@@ -57,12 +62,12 @@
   {
     "name": "Portal",
     "path": "/run/current-system/sw/share/applications/xdg-desktop-portal-gtk.desktop",
-    "exec": "/nix/store/54gybciaf60s8y9xfjzs9lv2hxr3x4y8-xdg-desktop-portal-gtk-1.15.3/libexec/xdg-desktop-portal-gtk"
+    "exec": "/nix/store/cr56af4vjvra7nxn74jcb0b9rqc55ab0-xdg-desktop-portal-gtk-1.15.3/libexec/xdg-desktop-portal-gtk"
   },
   {
     "name": "Spotify",
-    "path": "/var/lib/flatpak/exports/share/applications/com.spotify.Client.desktop",
-    "exec": "flatpak run --branch=stable --arch=x86_64 --command=spotify --file-forwarding com.spotify.Client @@u @@"
+    "path": "/home/danielkurz/.nix-profile/share/spotify/spotify.desktop",
+    "exec": "spotify "
   },
   {
     "name": "Steam",
@@ -81,8 +86,8 @@
   },
   {
     "name": "Xwayland",
-    "path": "/home/danielkurz/.nix-profile/share/applications/org.freedesktop.Xwayland.desktop",
-    "exec": "/nix/store/c1d1c0f03glhqzr4h72cmzpy3ilrymjr-xwayland-24.1.8/bin/Xwayland -decorate -displayfd 1"
+    "path": "/run/current-system/sw/share/applications/org.freedesktop.Xwayland.desktop",
+    "exec": "/nix/store/fns9kijaljcc9cdnxwssq46yi7q35kf7-xwayland-24.1.8/bin/Xwayland -decorate -displayfd 1"
   },
   {
     "name": "Zen Browser",

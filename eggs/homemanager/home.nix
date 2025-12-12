@@ -46,23 +46,22 @@
 		spotify
 		kdePackages.okular
 		sway
-		(flameshot.override { enableWlrSupport = true; })
 		(eww.overrideAttrs (oldAttrs: rec {
 			patches = [
 				~/.config/eww/patches/patch.diff
 			];
 		}))
-		(pkgs.rustPlatform.buildRustPackage rec {
+		(rustPlatform.buildRustPackage rec {
 			pname = "yolk_dots";
 			version = "0.3.4";
-			src = pkgs.fetchFromGitHub {
+			src = fetchFromGitHub {
 				owner = "elkowar";
 				repo = "yolk";
 				rev = "main";
-				hash = "sha256-3EQ6w+Jv/Fq5wJMit5lHUVfzcPmtySitGD83Hl4jfJY=";
+				hash = "sha256-VkiFG+rMr39PN12ACxVRXOz4aOenFhP+rIfZmPTCi0s=";
 			};
 		
-			cargoHash = "sha256-NsWdkvrMqhl3wwreBUjo5rRHA7W2NVkyWkT5Cr3qftA=";
+			cargoHash = "sha256-/ePCdk75xAq+JQFsgW2+ZUodQrZyYYbHYfSYP+of0Og=";
 			doCheck = false;
 		})	
 	];
@@ -86,10 +85,15 @@
 		enable = true;
 		profileExtra = ''
 			. ~/.bash_prompt
-			sway
 		'';
 	};
 
+	home.pointerCursor = {
+		enable = true;
+		name = "Bibata-Modern-Classic";
+		package = pkgs.bibata-cursors;
+		size = 20;
+	};
 	/*home.pointerCursor = 
 		let 
 			getFrom = url: hash: name: {

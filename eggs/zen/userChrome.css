@@ -6,8 +6,17 @@
   color: #336631 !important;
 }
 
-.pinned-tabs-container-separator {
+toolbarseparator {
+  color: #336631 !important;
+}
+
+.pinned-tabs-container-separator > toolbarseparator {
   background-color: #336631 !important;
+}
+
+
+.zen-workspace-close-unpinned-tabs-button {
+  color: #336631 !important;
 }
 
 /*#browser {
@@ -16,7 +25,7 @@
   box-shadow: 7px 7px #336631;
 }*/
 
-#urlbar[zen-floating-urlbar="true"] > #urlbar-background {
+#urlbar[zen-floating-urlbar="true"] > .urlbar-background {
   background-color: #2B2B27 !important;
 }
 

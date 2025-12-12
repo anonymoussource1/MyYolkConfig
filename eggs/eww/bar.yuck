@@ -15,6 +15,7 @@
 		 (third_section)))
 
 ; Vars
+; {# if data.device_type == "laptop" #}
 (defpoll battery :interval "2s" :initial "{\"status\":false,\"charge\":0}" `scripts/battery`)
 (defpoll wifi :interval "2s" :initial "0" `scripts/wifi`)
 (deflisten volume :initial "{\"is_mute\":false,\"vol\":0}" `scripts/volume`)
@@ -46,6 +47,7 @@
 		 :space-evenly false
 		 :spacing 2
 		(volume)
+		; {# if data.device_type == "laptop" #}
 		(battery)
 		(wifi) 
 		(ram)
@@ -110,6 +112,7 @@
 				:text {wifi >= 80 ? "󰤨" : wifi >= 60 ? "󰤥" : wifi >= 40 ? "󰤢" : wifi >= 20 ? "󰤟" : "󰤯"})
 		 (label :text "${wifi}%")))
 
+; {% if data.device_type == "laptop" %}
 (defwidget battery []
 	(box :class "block battery"
 		 :orientation "horizontal"
@@ -119,6 +122,7 @@
 		 (label :class "icon"
 				:text {battery.status ? "󰂄" : round(battery.charge, 0) >= 90 ? "󰁹" : round(battery.charge, 0) >= 80 ? "󰂁" : round(battery.charge, 0) >= 70 ? "󰂁" : round(battery.charge, 0) >= 60 ? "󰂀" : round(battery.charge, 0) >= 50 ? "󰁿" : round(battery.charge, 0) >= 40 ? "󰁾" : round(battery.charge, 0) >= 30 ? "󰁽" : round(battery.charge, 0) >= 20 ? "󰁼" : round(battery.charge, 0) >= 10 ? "󰁻" : "󰁺"})
 		 (label :text "${battery.charge}%")))
+; {% end %}
 
 ; Misc
 (defwidget flair []
