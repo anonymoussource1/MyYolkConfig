@@ -24,7 +24,7 @@
 	# Set your time zone.
 	time.timeZone = "America/Los_Angeles";
 
-	#security.polkit.enable = true;
+	security.polkit.enable = true;
 
 	# Enable CUPS to print documents.
 	services.printing = {
@@ -63,7 +63,6 @@
 		gawk
 		sysstat
 		neofetch
-		playerctl
 		jq
 		git
 	];
@@ -71,7 +70,7 @@
 	fonts = {
 		packages = with pkgs; [
 			noto-fonts
-			noto-fonts-emoji
+			noto-fonts-color-emoji
 			nerd-fonts.bigblue-terminal
 			nerd-fonts.symbols-only
 		];
@@ -95,6 +94,7 @@
 			};
 		};
 	};
+	hardware.graphics.enable = true;
 
 	system = {
 		autoUpgrade.enable = true;
@@ -102,14 +102,18 @@
 	};
 
 	programs.sway.enable = true;
-	programs.steam.enable = true;
+
 	services.flatpak.enable = true;
 	services.greetd = {
 		enable = true;
-		settings.default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember";
+		settings.default_session.command = "${pkgs.tuigreet}/bin/tuigreet --time --remember";
 	};
-
 	nixpkgs.config.allowUnfree = true;
+
+	xdg.portal = {
+		enable = true;
+		wlr.enable = true;
+	};
 
 	# Open ports in the firewall.
 	#networking.firewall.allowedTCPPorts = [ 8000 ];

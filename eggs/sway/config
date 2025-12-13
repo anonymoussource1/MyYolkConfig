@@ -123,7 +123,6 @@ mode "resize" {
   bindsym l resize grow width 10 px
 }
 
-bindsym $mod+P exec flameshot gui
 bindsym $mod+Return exec kitty
 bindsym $mod+d exec eww open launcher
 
