@@ -19,9 +19,17 @@ mouse_warping output
 workspace_layout default
 workspace_auto_back_and_forth no
 
-client.focused #2B2B27 #2B2B27 #336631 #2B2B27 #2B2B27
+set $dark-background #22243D
+set $background #362D48
+set $primary #444058
+set $secondary #675589
+set $text #FFFFFF
+
+#client.focused #2B2B27 #2B2B27 #336631 #2B2B27 #2B2B27
+client.focused $background $background $secondary $background $background
 client.focused_inactive #505149 #505149 #354033 #505149 #505149
-client.unfocused #1E1E1E #1E1E1E #223320 #1E1E1E #1E1E1E
+#client.unfocused #1E1E1E #1E1E1E #223320 #1E1E1E #1E1E1E
+client.unfocused $dark-background $dark-background $primary $dark-background $dark-background
 client.urgent #AA5042 #AA5042 #336631 #AA5042 #AA5042
 client.placeholder #000000 #0c0c0c #ffffff #000000 #0c0c0c
 client.background #ffffff
@@ -104,7 +112,7 @@ input "type:touchpad" {
 }
 
 output "*" {
-  bg #1B1B17 solid_color
+  #bg #1B1B17 solid_color
   # {# if SYSTEM.hostname == "dandy-desktop" #}
   #<yolk> scale 1.5 
 }
@@ -124,19 +132,19 @@ mode "resize" {
 }
 
 bindsym $mod+Return exec kitty
-bindsym $mod+d exec eww open launcher
+bindsym $mod+d exec qs ipc call launcher open
 
 assign [app_id="kitty"] 1
 assign [app_id="zen"] 2
-assign [app_id="spotify"] 3
+assign [class="spotify"] 3
 
 for_window [app_id="."] inhibit_idle fullscreen
 
 exec kitty
 exec flatpak run app.zen_browser.zen
 # {# if SYSTEM.hostname == "dandy-desktop" #}
-#<yolk> exec flatpak run com.spotify.Client
+#<yolk> exec spotify
 
-exec_always eww open bar
+exec_always qs -p ~/.config/quickshell/shell.qml
 
 exec "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_TYPE NIXOS_OZONE_WL XCURSOR_THEME XCURSOR_SIZE; systemctl --user reset-failed && systemctl --user start sway-session.target && swaymsg -mt subscribe '[]' || true && systemctl --user stop sway-session.target"

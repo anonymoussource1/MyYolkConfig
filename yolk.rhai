@@ -8,7 +8,7 @@ export let data = #{
 
 let zen_profile = io::read_file("zen_profile");
 export let eggs = #{
-	eww: #{ targets: "~/.config/eww" },
+	quickshell: #{ targets: "~/.config/quickshell" },
 	kitty: #{ targets: "~/.config/kitty" },
 	vim: #{ targets: "~/.config/vim" },
 	bash: #{ targets: "~", strategy: "merge" },

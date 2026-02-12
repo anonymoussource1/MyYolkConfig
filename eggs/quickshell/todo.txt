@@ -1,0 +1,4 @@
+1. Add shadow to curves
+2. Make launcher startup smoother
+3. Set focus back to windows the second launcher is close
+4. Add spotify integration (and maybe system tray)

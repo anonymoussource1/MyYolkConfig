@@ -24,10 +24,10 @@
 	# Set your time zone.
 	time.timeZone = "America/Los_Angeles";
 
-	security.polkit.enable = true;
+	security.rtkit.enable = true;
 
 	# Enable CUPS to print documents.
-	services.printing = {
+	/*services.printing = {
 		enable = true;
 		drivers = [ pkgs.gutenprint ];
 	};
@@ -36,14 +36,18 @@
 		enable = true;
 		nssmdns4 = true;
 		openFirewall = true;
-	};
+	};*/
 
 	# Enable sound.
 	services.pipewire = {
 		enable = true;
 		pulse.enable = true;
-		alsa.enable = true;
+		audio.enable = true;
+		wireplumber.enable = false;
 	};
+	services.pulseaudio.enable = false;
+
+	services.upower.enable = true;
 
 	# Enable touchpad support (enabled default in most desktopManager).
 	# services.libinput.enable = true;
@@ -69,9 +73,11 @@
 
 	fonts = {
 		packages = with pkgs; [
+			material-symbols
 			noto-fonts
 			noto-fonts-color-emoji
 			nerd-fonts.bigblue-terminal
+			nerd-fonts.profont
 			nerd-fonts.symbols-only
 		];
 

@@ -35,7 +35,13 @@
 		# (pkgs.writeShellScriptBin "my-hello" ''
 		#   echo "Hello, ${config.home.username}!"
 		# '')
+		gcc
+		ripgrep
+		fd
+		unzip
 		tree
+		opencode
+		cbonsai
 		i3blocks
 		cargo
 		rustc
@@ -47,11 +53,6 @@
 		kdePackages.okular
 		playerctl
 		quickshell
-		(eww.overrideAttrs (oldAttrs: rec {
-			patches = [
-				~/.config/eww/patches/patch.diff
-			];
-		}))
 		(rustPlatform.buildRustPackage rec {
 			pname = "yolk_dots";
 			version = "0.3.4";
@@ -65,10 +66,11 @@
 			cargoHash = "sha256-/ePCdk75xAq+JQFsgW2+ZUodQrZyYYbHYfSYP+of0Og=";
 			doCheck = false;
 		})	
+		libreoffice
 	];
 	
 	services.swayidle = let 
-		lock = "${pkgs.swaylock}/bin/swaylock -feF -i ~/Backgrounds/bg.jpg --font BigBlueTermPlusNerdFont";
+		lock = "${pkgs.quickshell}/bin/qs ipc call locker lock";
 		display = status: "${pkgs.sway}/bin/swaymsg 'output * power ${status}'";
 	in {
 		enable = true;
@@ -85,8 +87,40 @@
 	programs.bash = {
 		enable = true;
 		profileExtra = ''
+			. ~/.secrets
 			. ~/.bash_prompt
 		'';
+		shellAliases = {
+			avante = "nvim -c 'lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)'";
+			# alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
+		};
+	};
+
+	programs.neovim = {
+		enable = true;
+		defaultEditor = true;
+		vimAlias = true;
+		viAlias = true;
+		plugins = with pkgs.vimPlugins; [
+			telescope-nvim
+			catppuccin-nvim
+			nightfox-nvim
+			plenary-nvim
+			dressing-nvim
+			snacks-nvim
+			mini-icons
+			render-markdown-nvim
+			avante-nvim
+			blink-cmp-avante
+			blink-cmp
+			undotree
+			nvim-lspconfig
+		];
+		extraPackages = with pkgs; [
+			stylua
+			lua-language-server
+			rust-analyzer
+		];
 	};
 
 	home.pointerCursor = {
@@ -108,7 +142,6 @@
 	#  /etc/profiles/per-user/danielkurz/etc/profile.d/hm-session-vars.sh
 	#
 	home.sessionVariables = {
-		EDITOR = "vim";
 		PATH="$PATH:/home/danielkurz/.bin";
 		TERMINAL="kitty";
 	};
