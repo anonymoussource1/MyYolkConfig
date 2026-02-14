@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-mpstat 2 | stdbuf -oL awk '
-	/all/ {
-		cpu=100-$(13)
-
-		printf("%.2f%%\n",cpu)
-	}
-'
