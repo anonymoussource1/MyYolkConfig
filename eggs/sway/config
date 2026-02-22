@@ -136,7 +136,7 @@ bindsym $mod+d exec qs ipc call launcher open
 
 assign [app_id="kitty"] 1
 assign [app_id="zen"] 2
-assign [class="spotify"] 3
+assign [app_id="spotify"] 3
 
 for_window [app_id="."] inhibit_idle fullscreen
 

@@ -31,7 +31,7 @@ Item {
 				anchors.top: parent.top
 				anchors.horizontalCenter: parent.horizontalCenter
 				implicitWidth: 400
-				implicitHeight: input_bar.implicitHeight + 25 * Math.min(DesktopEntries.applications.values.length, 20) + Appearance.margin * 2
+				implicitHeight: input_bar.implicitHeight + 25 * DesktopEntries.applications.values.length + Appearance.margin * 2
 
 				bottomLeftRadius: 10
 				bottomRightRadius: 10
@@ -156,7 +156,6 @@ Item {
 						id: apps
 
 						spacing: Appearance.margin
-						Layout.fillWidth: true
 						Layout.preferredHeight: contentHeight
 						Layout.margins: Appearance.margin 
 
@@ -183,7 +182,7 @@ Item {
 
 							required property DesktopEntry modelData
 
-							anchors.horizontalCenter: parent.horizontalCenter
+							//anchors.horizontalCenter: parent.horizontalCenter
 
 							color: Appearance.text_color
 							font { pointSize: 11; family: "BigBlueTermPlusNerdFont" }

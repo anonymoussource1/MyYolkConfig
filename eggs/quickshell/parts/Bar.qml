@@ -158,44 +158,46 @@ PanelWindow {
 				info: Volume.percent + "%"
 			}
 
-			InfoBlock { 
-				property var percent: Battery.percent
-				icon: Battery.on_battery ? (
-						  Battery.percent < 13 ? "battery_0_bar" : (
-						  Battery.percent < 25 ? "battery_1_bar" : (
-						  Battery.percent < 38 ? "battery_2_bar" : (
-						  Battery.percent < 50 ? "battery_3_bar" : (
-						  Battery.percent < 63 ? "battery_4_bar" : (
-						  Battery.percent < 75 ? "battery_5_bar" : (
-						  Battery.percent < 88 ? "battery_6_bar" : "battery_full")))))))
-					: (
-						  Battery.percent < 10 ? "battery_charging_full" : (
-						  Battery.percent < 20 ? "battery_charging_20" : (
-						  Battery.percent < 30 ? "battery_charging_30" : (
-						  Battery.percent < 80 ? "battery_charging_80" : (
-						  Battery.percent < 90 ? "battery_charging_90" : "battery_full")))))
-				info: percent + "%"
+			// {% if io::path_exists("/sys/class/power_supply/BAT0") %}
+			//<yolk> InfoBlock { 
+				//<yolk> property var percent: Battery.percent
+				//<yolk> icon: Battery.on_battery ? (
+						  //<yolk> Battery.percent < 13 ? "battery_0_bar" : (
+						  //<yolk> Battery.percent < 25 ? "battery_1_bar" : (
+						  //<yolk> Battery.percent < 38 ? "battery_2_bar" : (
+						  //<yolk> Battery.percent < 50 ? "battery_3_bar" : (
+						  //<yolk> Battery.percent < 63 ? "battery_4_bar" : (
+						  //<yolk> Battery.percent < 75 ? "battery_5_bar" : (
+						  //<yolk> Battery.percent < 88 ? "battery_6_bar" : "battery_full")))))))
+					//<yolk> : (
+						  //<yolk> Battery.percent < 10 ? "battery_charging_full" : (
+						  //<yolk> Battery.percent < 20 ? "battery_charging_20" : (
+						  //<yolk> Battery.percent < 30 ? "battery_charging_30" : (
+						  //<yolk> Battery.percent < 80 ? "battery_charging_80" : (
+						  //<yolk> Battery.percent < 90 ? "battery_charging_90" : "battery_full")))))
+				//<yolk> info: percent + "%"
 
-				MouseArea {
-					anchors.fill: parent
-					hoverEnabled: true
-					onEntered: get_time.restart()
-					onExited: function() {
-						get_time.stop()
-						parent.info = Battery.percent + "%"
-					}
-				}
+				//<yolk> MouseArea {
+					//<yolk> anchors.fill: parent
+					//<yolk> hoverEnabled: true
+					//<yolk> onEntered: get_time.restart()
+					//<yolk> onExited: function() {
+						//<yolk> get_time.stop()
+						//<yolk> parent.info = Battery.percent + "%"
+					//<yolk> }
+				//<yolk> }
 
-				Timer {
-					id: get_time
-					interval: 500
-					property var hours: ((Battery.on_battery ? Battery.time_to_empty : Battery.time_to_full) / 60 / 60).toFixed(0);
-					property var minutes: ((Battery.on_battery ? Battery.time_to_empty : Battery.time_to_full) / 60).toFixed(0);
-					onTriggered: parent.info = hours + "h " + Math.abs(hours * 60 - minutes) + "m"
-				}
+				//<yolk> Timer {
+					//<yolk> id: get_time
+					//<yolk> interval: 500
+					//<yolk> property var hours: ((Battery.on_battery ? Battery.time_to_empty : Battery.time_to_full) / 60 / 60).toFixed(0);
+					//<yolk> property var minutes: ((Battery.on_battery ? Battery.time_to_empty : Battery.time_to_full) / 60).toFixed(0);
+					//<yolk> onTriggered: parent.info = hours + "h " + Math.abs(hours * 60 - minutes) + "m"
+				//<yolk> }
 
-				onPercentChanged: info = Battery.percent + "%"
-			}
+				//<yolk> onPercentChanged: info = Battery.percent + "%"
+			//<yolk> }
+			// {% end %}
 
 			InfoBlock {
 				property var percent: Network.percent

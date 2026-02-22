@@ -10,9 +10,14 @@
 	];
 
 	# Use the systemd-boot EFI boot loader.
-	boot.loader.systemd-boot.enable = true;
+	#boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
-
+	boot.loader.grub = {
+		enable = true;
+		device = "nodev"; # "nodev" is used for UEFI
+		efiSupport = true;
+		useOSProber = true;
+	};
 	# Use latest kernel.
 	boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -42,8 +47,8 @@
 	services.pipewire = {
 		enable = true;
 		pulse.enable = true;
-		audio.enable = true;
-		wireplumber.enable = false;
+		alsa.enable = true;
+		alsa.support32Bit = true;
 	};
 	services.pulseaudio.enable = false;
 

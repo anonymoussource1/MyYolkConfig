@@ -49,6 +49,7 @@ Scope {
 
 		WlSessionLockSurface {
 			Image {
+				anchors.fill: parent
 				source: "/home/danielkurz/Backgrounds/bg4.jpg"
 
 				Rectangle {

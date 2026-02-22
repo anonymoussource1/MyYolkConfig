@@ -8,7 +8,7 @@ export let data = #{
 
 let zen_profile = io::read_file("zen_profile");
 export let eggs = #{
-	quickshell: #{ targets: "~/.config/quickshell" },
+	quickshell: #{ targets: "~/.config/quickshell", templates: ["parts/Bar.qml"] },
 	kitty: #{ targets: "~/.config/kitty" },
 	vim: #{ targets: "~/.config/vim" },
 	nvim: #{ targets: "~/.config/nvim" },
